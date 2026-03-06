@@ -1,0 +1,661 @@
+{
+  "jurisdictions": [
+    {
+      "id": "us",
+      "kind": "country",
+      "name": "United States",
+      "iso_3166_1": "US"
+    },
+    {
+      "id": "us-ny",
+      "kind": "state",
+      "name": "New York",
+      "iso_3166_1": "US",
+      "iso_3166_2": "NY",
+      "parent_id": "us"
+    },
+    {
+      "id": "us-ca",
+      "kind": "state",
+      "name": "California",
+      "iso_3166_1": "US",
+      "iso_3166_2": "CA",
+      "parent_id": "us"
+    },
+    {
+      "id": "us-tx",
+      "kind": "state",
+      "name": "Texas",
+      "iso_3166_1": "US",
+      "iso_3166_2": "TX",
+      "parent_id": "us"
+    },
+    {
+      "id": "ca",
+      "kind": "country",
+      "name": "Canada",
+      "iso_3166_1": "CA"
+    },
+    {
+      "id": "ca-on",
+      "kind": "province",
+      "name": "Ontario",
+      "iso_3166_1": "CA",
+      "iso_3166_2": "ON",
+      "parent_id": "ca"
+    }
+  ],
+
+  "events": [
+    {
+      "id": "us-new-years-day",
+      "name": "New Year's Day",
+      "classification": "public_holiday",
+      "status": "official",
+      "jurisdiction_id": "us",
+      "alt_names": ["New Year's"],
+      "time_definition": {
+        "recurrence": {
+          "rrule": "FREQ=YEARLY;BYMONTH=1;BYMONTHDAY=1",
+          "timezone": "America/New_York",
+          "observance_rules": [
+            { "condition": "falls_on_saturday", "action": "observe_previous_business_day" },
+            { "condition": "falls_on_sunday",   "action": "observe_next_business_day" }
+          ]
+        }
+      }
+    },
+    {
+      "id": "us-mlk-day",
+      "name": "Martin Luther King Jr. Day",
+      "classification": "public_holiday",
+      "status": "official",
+      "jurisdiction_id": "us",
+      "alt_names": ["MLK Day"],
+      "time_definition": {
+        "recurrence": {
+          "rrule": "FREQ=YEARLY;BYMONTH=1;BYDAY=3MO",
+          "timezone": "America/New_York"
+        }
+      }
+    },
+    {
+      "id": "us-presidents-day",
+      "name": "Presidents' Day",
+      "classification": "public_holiday",
+      "status": "official",
+      "jurisdiction_id": "us",
+      "alt_names": ["Washington's Birthday"],
+      "time_definition": {
+        "recurrence": {
+          "rrule": "FREQ=YEARLY;BYMONTH=2;BYDAY=3MO",
+          "timezone": "America/New_York"
+        }
+      }
+    },
+    {
+      "id": "us-memorial-day",
+      "name": "Memorial Day",
+      "classification": "public_holiday",
+      "status": "official",
+      "jurisdiction_id": "us",
+      "time_definition": {
+        "recurrence": {
+          "rrule": "FREQ=YEARLY;BYMONTH=5;BYDAY=-1MO",
+          "timezone": "America/New_York"
+        }
+      }
+    },
+    {
+      "id": "us-juneteenth",
+      "name": "Juneteenth National Independence Day",
+      "classification": "public_holiday",
+      "status": "official",
+      "jurisdiction_id": "us",
+      "alt_names": ["Juneteenth"],
+      "time_definition": {
+        "recurrence": {
+          "rrule": "FREQ=YEARLY;BYMONTH=6;BYMONTHDAY=19",
+          "timezone": "America/New_York",
+          "observance_rules": [
+            { "condition": "falls_on_saturday", "action": "observe_previous_business_day" },
+            { "condition": "falls_on_sunday",   "action": "observe_next_business_day" }
+          ]
+        }
+      }
+    },
+    {
+      "id": "us-independence-day",
+      "name": "Independence Day",
+      "classification": "public_holiday",
+      "status": "official",
+      "jurisdiction_id": "us",
+      "alt_names": ["Fourth of July", "July 4th"],
+      "time_definition": {
+        "recurrence": {
+          "rrule": "FREQ=YEARLY;BYMONTH=7;BYMONTHDAY=4",
+          "timezone": "America/New_York",
+          "observance_rules": [
+            { "condition": "falls_on_saturday", "action": "observe_previous_business_day" },
+            { "condition": "falls_on_sunday",   "action": "observe_next_business_day" }
+          ]
+        }
+      }
+    },
+    {
+      "id": "us-labor-day",
+      "name": "Labor Day",
+      "classification": "public_holiday",
+      "status": "official",
+      "jurisdiction_id": "us",
+      "time_definition": {
+        "recurrence": {
+          "rrule": "FREQ=YEARLY;BYMONTH=9;BYDAY=1MO",
+          "timezone": "America/New_York"
+        }
+      }
+    },
+    {
+      "id": "us-columbus-day",
+      "name": "Columbus Day",
+      "classification": "public_holiday",
+      "status": "official",
+      "jurisdiction_id": "us",
+      "alt_names": ["Indigenous Peoples' Day"],
+      "time_definition": {
+        "recurrence": {
+          "rrule": "FREQ=YEARLY;BYMONTH=10;BYDAY=2MO",
+          "timezone": "America/New_York"
+        }
+      }
+    },
+    {
+      "id": "us-veterans-day",
+      "name": "Veterans Day",
+      "classification": "public_holiday",
+      "status": "official",
+      "jurisdiction_id": "us",
+      "time_definition": {
+        "recurrence": {
+          "rrule": "FREQ=YEARLY;BYMONTH=11;BYMONTHDAY=11",
+          "timezone": "America/New_York",
+          "observance_rules": [
+            { "condition": "falls_on_saturday", "action": "observe_previous_business_day" },
+            { "condition": "falls_on_sunday",   "action": "observe_next_business_day" }
+          ]
+        }
+      }
+    },
+    {
+      "id": "us-thanksgiving",
+      "name": "Thanksgiving Day",
+      "classification": "public_holiday",
+      "status": "official",
+      "jurisdiction_id": "us",
+      "time_definition": {
+        "recurrence": {
+          "rrule": "FREQ=YEARLY;BYMONTH=11;BYDAY=4TH",
+          "timezone": "America/New_York"
+        }
+      }
+    },
+    {
+      "id": "us-christmas",
+      "name": "Christmas Day",
+      "classification": "public_holiday",
+      "status": "official",
+      "jurisdiction_id": "us",
+      "alt_names": ["Christmas"],
+      "time_definition": {
+        "recurrence": {
+          "rrule": "FREQ=YEARLY;BYMONTH=12;BYMONTHDAY=25",
+          "timezone": "America/New_York",
+          "observance_rules": [
+            { "condition": "falls_on_saturday", "action": "observe_previous_business_day" },
+            { "condition": "falls_on_sunday",   "action": "observe_next_business_day" }
+          ]
+        }
+      }
+    },
+
+    {
+      "id": "ca-new-years-day",
+      "name": "New Year's Day",
+      "classification": "public_holiday",
+      "status": "official",
+      "jurisdiction_id": "ca",
+      "time_definition": {
+        "recurrence": {
+          "rrule": "FREQ=YEARLY;BYMONTH=1;BYMONTHDAY=1",
+          "timezone": "America/Toronto",
+          "observance_rules": [
+            { "condition": "falls_on_saturday", "action": "observe_next_business_day" },
+            { "condition": "falls_on_sunday",   "action": "observe_next_business_day" }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ca-canada-day",
+      "name": "Canada Day",
+      "classification": "public_holiday",
+      "status": "official",
+      "jurisdiction_id": "ca",
+      "time_definition": {
+        "recurrence": {
+          "rrule": "FREQ=YEARLY;BYMONTH=7;BYMONTHDAY=1",
+          "timezone": "America/Toronto",
+          "observance_rules": [
+            { "condition": "falls_on_saturday", "action": "observe_next_business_day" },
+            { "condition": "falls_on_sunday",   "action": "observe_next_business_day" }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ca-thanksgiving",
+      "name": "Thanksgiving Day (Canada)",
+      "classification": "public_holiday",
+      "status": "official",
+      "jurisdiction_id": "ca",
+      "time_definition": {
+        "recurrence": {
+          "rrule": "FREQ=YEARLY;BYMONTH=10;BYDAY=2MO",
+          "timezone": "America/Toronto"
+        }
+      }
+    },
+    {
+      "id": "ca-christmas",
+      "name": "Christmas Day",
+      "classification": "public_holiday",
+      "status": "official",
+      "jurisdiction_id": "ca",
+      "time_definition": {
+        "recurrence": {
+          "rrule": "FREQ=YEARLY;BYMONTH=12;BYMONTHDAY=25",
+          "timezone": "America/Toronto",
+          "observance_rules": [
+            { "condition": "falls_on_saturday", "action": "observe_next_business_day" },
+            { "condition": "falls_on_sunday",   "action": "observe_next_business_day" }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ca-boxing-day",
+      "name": "Boxing Day",
+      "classification": "public_holiday",
+      "status": "official",
+      "jurisdiction_id": "ca-on",
+      "time_definition": {
+        "recurrence": {
+          "rrule": "FREQ=YEARLY;BYMONTH=12;BYMONTHDAY=26",
+          "timezone": "America/Toronto",
+          "observance_rules": [
+            { "condition": "falls_on_saturday", "action": "observe_next_business_day" },
+            { "condition": "falls_on_sunday",   "action": "observe_next_business_day" }
+          ]
+        }
+      }
+    }
+  ],
+
+  "policies": [
+    {
+      "id": "us-hos-holiday-exemption",
+      "name": "HOS Holiday Hours Exemption",
+      "category": "labor_rule",
+      "status": "official",
+      "tags": ["hours_of_service", "driver", "exemption"],
+      "time_definition": {
+        "recurrence": {
+          "rrule": "FREQ=YEARLY;BYMONTH=11;BYDAY=4TH",
+          "timezone": "America/Chicago"
+        }
+      },
+      "applicability": {
+        "roles": ["driver"],
+        "modes": ["truck"],
+        "vehicle_classes": ["class_7", "class_8"]
+      },
+      "rules": [
+        {
+          "kind": "hours_of_service",
+          "constraints": {
+            "max_driving_hours": 11,
+            "max_on_duty_hours": 14,
+            "exemption": "holiday_short_haul"
+          }
+        }
+      ]
+    }
+  ],
+
+  "impacts": [
+    {
+      "match": { "event_id": "us-new-years-day" },
+      "operational_impact": {
+        "impact_level": "full",
+        "affected_operations": ["freight_pickup", "freight_delivery", "customs_clearance", "port_operations"],
+        "notes": "Federal holiday — most freight operations closed. Plan for day-before and day-after surge."
+      },
+      "impact_schedule": {
+        "timezone": "America/New_York",
+        "operations": [
+          {
+            "operation": "freight_delivery",
+            "rules": [
+              {
+                "when": { "date_ref": "observed", "offset_days": 0 },
+                "effect": { "status": "closed", "severity": "full" },
+                "reason": "Federal holiday"
+              },
+              {
+                "when": { "date_ref": "observed", "offset_days": -1 },
+                "if": { "weekday_in": ["MO", "TU", "WE", "TH", "FR"] },
+                "effect": { "status": "partial", "severity": "partial" },
+                "reason": "New Year's Eve — reduced capacity, early close expected"
+              }
+            ]
+          },
+          {
+            "operation": "customs_clearance",
+            "rules": [
+              {
+                "when": { "date_ref": "observed", "offset_days": 0 },
+                "effect": { "status": "closed", "severity": "full" },
+                "reason": "CBP closed on federal holidays"
+              }
+            ]
+          },
+          {
+            "operation": "port_operations",
+            "rules": [
+              {
+                "when": { "date_ref": "observed", "offset_days": 0 },
+                "effect": { "status": "closed", "severity": "full" },
+                "reason": "Port authority closed"
+              }
+            ]
+          }
+        ]
+      }
+    },
+
+    {
+      "match": { "event_id": "us-memorial-day" },
+      "operational_impact": {
+        "impact_level": "full",
+        "affected_operations": ["freight_pickup", "freight_delivery", "warehouse_operations"],
+        "notes": "Federal holiday — start of summer surge. Plan for increased residential volumes following Tuesday."
+      },
+      "impact_schedule": {
+        "timezone": "America/New_York",
+        "operations": [
+          {
+            "operation": "freight_delivery",
+            "rules": [
+              {
+                "when": { "date_ref": "observed", "offset_days": 0 },
+                "effect": { "status": "closed", "severity": "full" },
+                "reason": "Federal holiday"
+              }
+            ]
+          },
+          {
+            "operation": "warehouse_operations",
+            "rules": [
+              {
+                "when": { "date_ref": "observed", "offset_days": 0 },
+                "effect": { "status": "closed", "severity": "full" },
+                "reason": "Federal holiday"
+              }
+            ]
+          }
+        ]
+      }
+    },
+
+    {
+      "match": { "event_id": "us-independence-day" },
+      "operational_impact": {
+        "impact_level": "full",
+        "affected_operations": ["freight_pickup", "freight_delivery", "customs_clearance"],
+        "notes": "Federal holiday. If July 4 falls on a weekend, observed date may create a long weekend."
+      },
+      "network_impacts": {
+        "properties": {
+          "facility_filters": [
+            { "facility_type": "distribution_center", "region_ref": "us-northeast" },
+            { "facility_type": "port", "region_ref": "us-east-coast" }
+          ]
+        },
+        "rules": [
+          {
+            "condition": "observed_date_differs_from_actual",
+            "action": "alert_long_weekend",
+            "severity": "warning"
+          }
+        ]
+      },
+      "impact_schedule": {
+        "timezone": "America/New_York",
+        "operations": [
+          {
+            "operation": "freight_delivery",
+            "rules": [
+              {
+                "when": { "date_ref": "observed", "offset_days": 0 },
+                "effect": { "status": "closed", "severity": "full" },
+                "reason": "Federal holiday"
+              },
+              {
+                "when": { "date_ref": "observed", "offset_days": -1 },
+                "if": { "weekday_in": ["MO", "TU", "WE", "TH", "FR"] },
+                "effect": { "status": "partial", "severity": "partial" },
+                "reason": "Holiday eve — reduced staffing"
+              }
+            ]
+          },
+          {
+            "operation": "customs_clearance",
+            "rules": [
+              {
+                "when": { "date_ref": "observed", "offset_days": 0 },
+                "effect": { "status": "closed", "severity": "full" },
+                "reason": "CBP closed on federal holidays"
+              }
+            ]
+          }
+        ]
+      }
+    },
+
+    {
+      "match": { "event_id": "us-labor-day" },
+      "operational_impact": {
+        "impact_level": "full",
+        "affected_operations": ["freight_pickup", "freight_delivery", "warehouse_operations", "driver_dispatch"],
+        "notes": "Federal holiday. End-of-summer surge typically follows. Expect HOS exemption requests."
+      },
+      "impact_schedule": {
+        "timezone": "America/New_York",
+        "operations": [
+          {
+            "operation": "freight_delivery",
+            "rules": [
+              {
+                "when": { "date_ref": "actual", "offset_days": 0 },
+                "effect": { "status": "closed", "severity": "full" },
+                "reason": "Federal holiday"
+              }
+            ]
+          },
+          {
+            "operation": "driver_dispatch",
+            "rules": [
+              {
+                "when": { "date_ref": "actual", "offset_days": 0 },
+                "effect": { "status": "closed", "severity": "full" },
+                "reason": "Federal holiday — driver rest mandated"
+              }
+            ]
+          }
+        ]
+      }
+    },
+
+    {
+      "match": { "event_id": "us-thanksgiving" },
+      "operational_impact": {
+        "impact_level": "full",
+        "affected_operations": [
+          "freight_pickup", "freight_delivery", "customs_clearance",
+          "warehouse_operations", "driver_dispatch"
+        ],
+        "notes": "Major peak-season holiday. Day-before (Wed) and day-after (Black Friday) carry significant volume impacts."
+      },
+      "impact_schedule": {
+        "timezone": "America/New_York",
+        "operations": [
+          {
+            "operation": "freight_delivery",
+            "rules": [
+              {
+                "when": { "date_ref": "actual", "offset_days": -1 },
+                "if": { "weekday_in": ["WE"] },
+                "effect": { "status": "partial", "severity": "partial" },
+                "reason": "Thanksgiving Eve — high volume, early terminal close"
+              },
+              {
+                "when": { "date_ref": "actual", "offset_days": 0 },
+                "effect": { "status": "closed", "severity": "full" },
+                "reason": "Thanksgiving Day — federal holiday"
+              },
+              {
+                "when": { "date_ref": "actual", "offset_days": 1 },
+                "if": { "weekday_in": ["FR"] },
+                "effect": { "status": "partial", "severity": "partial" },
+                "reason": "Black Friday — high residential volume, staffing reduced"
+              }
+            ]
+          },
+          {
+            "operation": "customs_clearance",
+            "rules": [
+              {
+                "when": { "date_ref": "actual", "offset_days": 0 },
+                "effect": { "status": "closed", "severity": "full" },
+                "reason": "CBP closed on federal holidays"
+              }
+            ]
+          },
+          {
+            "operation": "warehouse_operations",
+            "rules": [
+              {
+                "when": { "date_ref": "actual", "offset_days": 0 },
+                "effect": { "status": "closed", "severity": "full" },
+                "reason": "Federal holiday"
+              },
+              {
+                "when": { "date_ref": "actual", "offset_days": 1 },
+                "if": { "weekday_in": ["FR"] },
+                "effect": { "status": "partial", "severity": "partial" },
+                "reason": "Black Friday — skeleton crew only"
+              }
+            ]
+          }
+        ]
+      }
+    },
+
+    {
+      "match": { "event_id": "us-christmas" },
+      "operational_impact": {
+        "impact_level": "full",
+        "affected_operations": [
+          "freight_pickup", "freight_delivery", "customs_clearance",
+          "warehouse_operations", "port_operations"
+        ],
+        "notes": "Major holiday affecting all operations. Christmas Eve and week-after also impacted."
+      },
+      "impact_schedule": {
+        "timezone": "America/New_York",
+        "operations": [
+          {
+            "operation": "freight_delivery",
+            "rules": [
+              {
+                "when": { "date_ref": "actual", "offset_days": -1 },
+                "if": { "weekday_in": ["MO", "TU", "WE", "TH", "FR"] },
+                "effect": { "status": "partial", "severity": "partial" },
+                "reason": "Christmas Eve — early terminal close, residential peak"
+              },
+              {
+                "when": { "date_ref": "observed", "offset_days": 0 },
+                "effect": { "status": "closed", "severity": "full" },
+                "reason": "Christmas Day (observed)"
+              }
+            ]
+          },
+          {
+            "operation": "customs_clearance",
+            "rules": [
+              {
+                "when": { "date_ref": "observed", "offset_days": 0 },
+                "effect": { "status": "closed", "severity": "full" },
+                "reason": "CBP closed"
+              }
+            ]
+          },
+          {
+            "operation": "port_operations",
+            "rules": [
+              {
+                "when": { "date_ref": "observed", "offset_days": 0 },
+                "effect": { "status": "closed", "severity": "full" },
+                "reason": "Port authority closed"
+              }
+            ]
+          }
+        ]
+      }
+    },
+
+    {
+      "match": { "event_id": "ca-canada-day" },
+      "operational_impact": {
+        "impact_level": "full",
+        "affected_operations": ["freight_delivery", "customs_clearance", "cross_border_ops"],
+        "notes": "Canadian federal holiday. Canada-US cross-border traffic significantly reduced."
+      },
+      "impact_schedule": {
+        "timezone": "America/Toronto",
+        "operations": [
+          {
+            "operation": "cross_border_ops",
+            "rules": [
+              {
+                "when": { "date_ref": "observed", "offset_days": 0 },
+                "effect": { "status": "partial", "severity": "partial" },
+                "reason": "Reduced CBSA staffing at border crossings"
+              }
+            ]
+          },
+          {
+            "operation": "freight_delivery",
+            "rules": [
+              {
+                "when": { "date_ref": "observed", "offset_days": 0 },
+                "effect": { "status": "closed", "severity": "full" },
+                "reason": "Canadian federal holiday"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
