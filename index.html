@@ -62,6 +62,17 @@
     }
     header h1 span { color: var(--accent-h); }
 
+    .header-badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .5px;
+      background: rgba(99,102,241,.15);
+      color: var(--accent-h);
+      border: 1px solid rgba(99,102,241,.3);
+      padding: 2px 7px;
+      border-radius: 12px;
+    }
+
     .header-controls {
       display: flex;
       align-items: center;
@@ -97,7 +108,10 @@
       align-items: center;
       gap: 8px;
     }
-    .sidebar-header h2 { font-size: 13px; font-weight: 600; color: var(--muted); letter-spacing: .5px; text-transform: uppercase; }
+    .sidebar-header h2 {
+      font-size: 13px; font-weight: 600; color: var(--muted);
+      letter-spacing: .5px; text-transform: uppercase;
+    }
 
     #config-editor {
       flex: 1;
@@ -156,7 +170,6 @@
       border-color: var(--accent);
       box-shadow: 0 0 0 2px rgba(99,102,241,.25);
     }
-
     input[type="number"] { width: 80px; }
 
     /* ── Buttons ─────────────────────────────────────────────────────────── */
@@ -179,12 +192,19 @@
     .btn-ghost:hover:not(:disabled)   { background: var(--surface2); }
     .btn-sm { padding: 4px 10px; font-size: 12px; }
 
-    /* ── Stats strip ─────────────────────────────────────────────────────── */
-    .stats-strip {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
+    /* ── Spinner ─────────────────────────────────────────────────────────── */
+    .spinner {
+      display: inline-block;
+      width: 14px; height: 14px;
+      border: 2px solid rgba(255,255,255,.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin .6s linear infinite;
     }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Stats strip ─────────────────────────────────────────────────────── */
+    .stats-strip { display: flex; gap: 12px; flex-wrap: wrap; }
     .stat-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -195,26 +215,22 @@
     .stat-card .stat-val { font-size: 22px; font-weight: 700; color: var(--text); }
     .stat-card .stat-lbl { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .4px; margin-top: 2px; }
 
-    /* ── Filter chips ────────────────────────────────────────────────────── */
-    .filter-row {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .chip {
-      padding: 3px 10px;
-      border-radius: 20px;
-      font-size: 12px;
+    /* ── Tabs ────────────────────────────────────────────────────────────── */
+    .tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--border); }
+    .tab {
+      padding: 8px 14px;
+      font-size: 13px;
       font-weight: 500;
-      border: 1px solid var(--border);
-      cursor: pointer;
-      background: var(--surface2);
       color: var(--muted);
-      transition: all .15s;
-      user-select: none;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color .15s;
     }
-    .chip.active, .chip:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .tab.active { color: var(--accent-h); border-bottom-color: var(--accent-h); }
+    .tab:hover:not(.active) { color: var(--text); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
 
     /* ── Holiday cards ───────────────────────────────────────────────────── */
     .month-group { display: flex; flex-direction: column; gap: 6px; }
@@ -293,27 +309,29 @@
       font-size: 11px;
       font-weight: 600;
     }
-    .pill-public   { background: rgba(99,102,241,.15); color: var(--accent-h); border: 1px solid rgba(99,102,241,.3); }
-    .pill-civic    { background: rgba(59,130,246,.15); color: var(--blue);     border: 1px solid rgba(59,130,246,.3); }
-    .pill-default  { background: var(--surface2);      color: var(--muted);    border: 1px solid var(--border); }
+    .pill-public  { background: rgba(99,102,241,.15); color: var(--accent-h); border: 1px solid rgba(99,102,241,.3); }
+    .pill-civic   { background: rgba(59,130,246,.15);  color: var(--blue);     border: 1px solid rgba(59,130,246,.3); }
+    .pill-default { background: var(--surface2);       color: var(--muted);    border: 1px solid var(--border); }
 
-    .impact-indicator {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      flex-shrink: 0;
-    }
-    .dot {
-      width: 9px; height: 9px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
+    .impact-indicator { display: flex; align-items: center; gap: 5px; flex-shrink: 0; }
+    .dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
     .dot-full    { background: var(--red); }
     .dot-partial { background: var(--yellow); }
     .dot-none    { background: var(--green); }
     .dot-cond    { background: var(--orange); }
 
-    /* ── Impact detail panel ─────────────────────────────────────────────── */
+    .jur-badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .4px;
+      padding: 1px 6px;
+      border-radius: 4px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    /* ── Card detail ─────────────────────────────────────────────────────── */
     .card-detail {
       display: none;
       border-top: 1px solid var(--border);
@@ -333,12 +351,7 @@
       margin-bottom: 8px;
     }
 
-    .op-impact-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      margin-bottom: 6px;
-    }
+    .op-impact-row { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px; }
     .op-level {
       padding: 2px 8px;
       border-radius: 12px;
@@ -347,16 +360,12 @@
       white-space: nowrap;
       flex-shrink: 0;
     }
-    .level-full     { background: rgba(239,68,68,.15);  color: var(--red);    border: 1px solid rgba(239,68,68,.3); }
-    .level-partial  { background: rgba(234,179,8,.15);  color: var(--yellow); border: 1px solid rgba(234,179,8,.3); }
-    .level-none     { background: rgba(34,197,94,.15);  color: var(--green);  border: 1px solid rgba(34,197,94,.3); }
-    .level-cond     { background: rgba(249,115,22,.15); color: var(--orange); border: 1px solid rgba(249,115,22,.3); }
+    .level-full    { background: rgba(239,68,68,.15);  color: var(--red);    border: 1px solid rgba(239,68,68,.3); }
+    .level-partial { background: rgba(234,179,8,.15);  color: var(--yellow); border: 1px solid rgba(234,179,8,.3); }
+    .level-none    { background: rgba(34,197,94,.15);  color: var(--green);  border: 1px solid rgba(34,197,94,.3); }
+    .level-cond    { background: rgba(249,115,22,.15); color: var(--orange); border: 1px solid rgba(249,115,22,.3); }
 
-    .schedule-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 12px;
-    }
+    .schedule-table { width: 100%; border-collapse: collapse; font-size: 12px; }
     .schedule-table th {
       text-align: left;
       color: var(--muted);
@@ -364,17 +373,26 @@
       padding: 4px 8px 6px;
       border-bottom: 1px solid var(--border);
     }
-    .schedule-table td {
-      padding: 6px 8px;
-      border-bottom: 1px solid var(--border);
-      vertical-align: top;
-    }
+    .schedule-table td { padding: 6px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
     .schedule-table tr:last-child td { border-bottom: none; }
     .schedule-table .eff-closed  { color: var(--red); }
     .schedule-table .eff-partial { color: var(--yellow); }
     .schedule-table .eff-open    { color: var(--green); }
 
-    /* ── Empty / error states ────────────────────────────────────────────── */
+    /* ── Date checker ────────────────────────────────────────────────────── */
+    .date-checker {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 14px 16px;
+    }
+    .date-checker h3 { font-size: 13px; font-weight: 600; margin-bottom: 10px; }
+    .date-check-row  { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .date-check-result { margin-top: 10px; padding: 10px 12px; border-radius: var(--radius); font-size: 13px; }
+    .dcr-hit  { background: rgba(239,68,68,.1); border: 1px solid rgba(239,68,68,.3); }
+    .dcr-miss { background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.3); color: var(--green); }
+
+    /* ── Empty / error ───────────────────────────────────────────────────── */
     .empty-state {
       display: flex;
       flex-direction: column;
@@ -386,7 +404,7 @@
       text-align: center;
     }
     .empty-state svg { opacity: .3; }
-    .empty-state h3  { font-size: 15px; font-weight: 600; color: var(--text); }
+    .empty-state h3 { font-size: 15px; font-weight: 600; color: var(--text); }
 
     .error-banner {
       background: rgba(239,68,68,.1);
@@ -399,66 +417,11 @@
       white-space: pre-wrap;
     }
 
-    /* ── Date checker ────────────────────────────────────────────────────── */
-    .date-checker {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 14px 16px;
-    }
-    .date-checker h3 { font-size: 13px; font-weight: 600; margin-bottom: 10px; }
-    .date-check-row  { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-    .date-check-result {
-      margin-top: 10px;
-      padding: 10px 12px;
-      border-radius: var(--radius);
-      font-size: 13px;
-    }
-    .dcr-hit  { background: rgba(239,68,68,.1); border: 1px solid rgba(239,68,68,.3); }
-    .dcr-miss { background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.3); color: var(--green); }
-
-    /* ── Tabs ────────────────────────────────────────────────────────────── */
-    .tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--border); }
-    .tab {
-      padding: 8px 14px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--muted);
-      cursor: pointer;
-      border-bottom: 2px solid transparent;
-      margin-bottom: -1px;
-      transition: color .15s;
-    }
-    .tab.active { color: var(--accent-h); border-bottom-color: var(--accent-h); }
-    .tab:hover:not(.active) { color: var(--text); }
-
-    .tab-panel { display: none; }
-    .tab-panel.active { display: block; }
-
     /* ── Scrollbar ───────────────────────────────────────────────────────── */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
-
-    /* ── Jurisdiction badge ──────────────────────────────────────────────── */
-    .jur-badge {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: .4px;
-      padding: 1px 6px;
-      border-radius: 4px;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      color: var(--muted);
-    }
-
-    /* ── Toggle sidebar btn ──────────────────────────────────────────────── */
-    #toggle-sidebar {
-      padding: 6px 10px;
-      font-size: 12px;
-    }
-    #toggle-sidebar svg { flex-shrink: 0; }
   </style>
 </head>
 <body>
@@ -466,10 +429,13 @@
 <!-- ── Header ────────────────────────────────────────────────────────────── -->
 <header>
   <h1>Holiday <span>Resolver</span></h1>
+  <span class="header-badge">Python API</span>
 
   <div class="header-controls">
     <button class="btn btn-ghost btn-sm" id="toggle-sidebar">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/></svg>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/>
+      </svg>
       Config
     </button>
 
@@ -477,9 +443,7 @@
     <input type="number" id="year-input" min="2000" max="2099" value="2026" />
 
     <label for="jur-select">Jurisdiction</label>
-    <select id="jur-select">
-      <option value="">All</option>
-    </select>
+    <select id="jur-select"><option value="">All</option></select>
 
     <label for="class-select">Class</label>
     <select id="class-select">
@@ -511,28 +475,28 @@
   <!-- Content -->
   <main id="content">
 
-    <!-- Stats -->
     <div class="stats-strip" id="stats-strip" style="display:none"></div>
 
-    <!-- Tabs -->
     <div class="tabs">
       <div class="tab active" data-tab="timeline">Timeline</div>
       <div class="tab" data-tab="checker">Date Checker</div>
       <div class="tab" data-tab="raw">Raw JSON</div>
     </div>
 
-    <!-- Timeline panel -->
+    <!-- Timeline -->
     <div class="tab-panel active" id="panel-timeline">
       <div id="results-container">
         <div class="empty-state">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
+          </svg>
           <h3>No results yet</h3>
           <p>Click <strong>Resolve</strong> to compute holidays for the selected year.</p>
         </div>
       </div>
     </div>
 
-    <!-- Date checker panel -->
+    <!-- Date Checker -->
     <div class="tab-panel" id="panel-checker">
       <div class="date-checker">
         <h3>Check a Specific Date</h3>
@@ -545,7 +509,7 @@
       </div>
     </div>
 
-    <!-- Raw JSON panel -->
+    <!-- Raw JSON -->
     <div class="tab-panel" id="panel-raw">
       <pre id="raw-output" style="
         background: var(--surface);
@@ -564,64 +528,72 @@
   </main>
 </div>
 
-<!-- ── Scripts ────────────────────────────────────────────────────────────── -->
-<script src="holiday-resolver.js"></script>
+<!-- ── Script ─────────────────────────────────────────────────────────────── -->
 <script>
 'use strict';
 
-// ── State ──────────────────────────────────────────────────────────────────
-let resolver   = null;
+// ── Client-side date/label utilities (rendering only) ─────────────────────
+const MONTH_FULL = [
+  '', 'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
+];
+const WD_FULL  = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+const WD_SHORT = ['MO','TU','WE','TH','FR','SA','SU'];
+
+function parseDate(str) {
+  const [y, m, d] = str.split('-').map(Number);
+  return new Date(y, m - 1, d);
+}
+// JS weekday: 0=Sun…6=Sat → convert to Mon-based index for WD_FULL/WD_SHORT
+function pyWeekday(jsDate) {
+  return (jsDate.getDay() + 6) % 7; // 0=Mon…6=Sun
+}
+function formatDateLong(dateStr) {
+  const d = parseDate(dateStr);
+  return `${WD_FULL[pyWeekday(d)]}, ${MONTH_FULL[d.getMonth()+1]} ${d.getDate()}, ${d.getFullYear()}`;
+}
+function escHtml(s) {
+  if (s == null) return '';
+  return String(s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── State ─────────────────────────────────────────────────────────────────
+let currentConfig = {};
 let resolvedEvents = [];
-let activeFilters  = new Set(); // operation filters
-let sidebarOpen    = true;
+let sidebarOpen = true;
 
-// ── Fetch sample config ────────────────────────────────────────────────────
-async function loadSampleConfig() {
-  try {
-    const r = await fetch('sample-config.json');
-    if (!r.ok) throw new Error(`HTTP ${r.status}`);
-    return await r.json();
-  } catch {
-    return null;
-  }
+// ── API helpers ───────────────────────────────────────────────────────────
+async function apiPost(path, body) {
+  const res = await fetch(path, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+  return data;
 }
 
-// ── Init ───────────────────────────────────────────────────────────────────
+// ── Init ──────────────────────────────────────────────────────────────────
 async function init() {
-  const sample = await loadSampleConfig();
-  if (sample) {
-    document.getElementById('config-editor').value =
-      JSON.stringify(sample, null, 2);
-    applyConfig(sample);
-  } else {
-    document.getElementById('config-editor').value =
-      JSON.stringify(emptyConfig(), null, 2);
-    applyConfig(emptyConfig());
-  }
-}
-
-function emptyConfig() {
-  return { jurisdictions: [], events: [], policies: [], impacts: [] };
-}
-
-function applyConfig(cfg) {
   try {
-    resolver = new HolidayResolver(cfg);
-    populateJurisdictionSelects(cfg.jurisdictions || []);
+    const res = await fetch('/sample-config.json');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    currentConfig = await res.json();
+    document.getElementById('config-editor').value =
+      JSON.stringify(currentConfig, null, 2);
+    populateJurisdictionSelects(currentConfig.jurisdictions || []);
     showError(null);
+    doResolve();
   } catch (e) {
-    showError(`Config error: ${e.message}`);
-    resolver = null;
+    showError(`Failed to load sample config: ${e.message}`);
   }
 }
 
-// ── Jurisdiction selects ───────────────────────────────────────────────────
 function populateJurisdictionSelects(jurisdictions) {
-  const selects = [
-    document.getElementById('jur-select'),
-    document.getElementById('check-jur-select'),
-  ];
-  selects.forEach(sel => {
+  ['jur-select', 'check-jur-select'].forEach(id => {
+    const sel = document.getElementById(id);
     const first = sel.options[0];
     sel.innerHTML = '';
     sel.appendChild(first);
@@ -634,62 +606,74 @@ function populateJurisdictionSelects(jurisdictions) {
   });
 }
 
-// ── Resolve ────────────────────────────────────────────────────────────────
-function doResolve() {
-  if (!resolver) { showError('No valid config loaded.'); return; }
-
-  const year   = parseInt(document.getElementById('year-input').value, 10);
-  const jurId  = document.getElementById('jur-select').value || null;
-  const cls    = document.getElementById('class-select').value;
+// ── Resolve (calls Python API) ────────────────────────────────────────────
+async function doResolve() {
+  if (!currentConfig || !Object.keys(currentConfig).length) {
+    showError('No config loaded.'); return;
+  }
+  const btn = document.getElementById('resolve-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Resolving…';
 
   try {
-    const opts = jurId ? { jurisdictionId: jurId } : {};
-    let events = resolver.resolve(year, year, opts);
+    const year  = parseInt(document.getElementById('year-input').value, 10);
+    const jurId = document.getElementById('jur-select').value || null;
+    const cls   = document.getElementById('class-select').value || null;
 
-    if (cls) events = events.filter(e => e.classification === cls);
+    const data = await apiPost('/api/resolve', {
+      config: currentConfig,
+      year,
+      jurisdiction_id: jurId,
+      classification:  cls,
+    });
 
-    resolvedEvents = events;
-    renderStats(events);
-    renderTimeline(events);
-    renderRaw(events);
+    resolvedEvents = data.events;
+    renderStats(resolvedEvents);
+    renderTimeline(resolvedEvents, year);
+    renderRaw(resolvedEvents);
     showError(null);
   } catch (e) {
-    showError(`Resolve error: ${e.message}\n${e.stack}`);
+    showError(`Resolve error: ${e.message}`);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Resolve';
   }
 }
 
-// ── Stats ──────────────────────────────────────────────────────────────────
+// ── Stats ─────────────────────────────────────────────────────────────────
 function renderStats(events) {
   const strip = document.getElementById('stats-strip');
   strip.style.display = 'flex';
 
-  const fullImpact    = events.filter(e => e.impacts.some(i => i.operational_impact?.impact_level === 'full')).length;
-  const partialImpact = events.filter(e => e.impacts.some(i => i.operational_impact?.impact_level === 'partial')).length;
-  const shifted       = events.filter(e => e.is_shifted).length;
+  const full    = events.filter(e => e.impacts.some(i => i.operational_impact?.impact_level === 'full')).length;
+  const partial = events.filter(e => e.impacts.some(i => i.operational_impact?.impact_level === 'partial')).length;
+  const shifted = events.filter(e => e.is_shifted).length;
 
   strip.innerHTML = `
     <div class="stat-card"><div class="stat-val">${events.length}</div><div class="stat-lbl">Holidays</div></div>
-    <div class="stat-card"><div class="stat-val" style="color:var(--red)">${fullImpact}</div><div class="stat-lbl">Full Impact</div></div>
-    <div class="stat-card"><div class="stat-val" style="color:var(--yellow)">${partialImpact}</div><div class="stat-lbl">Partial Impact</div></div>
-    <div class="stat-card"><div class="stat-val" style="color:var(--blue)">${shifted}</div><div class="stat-lbl">Observed Shifts</div></div>
-  `;
+    <div class="stat-card"><div class="stat-val" style="color:var(--red)">${full}</div><div class="stat-lbl">Full Impact</div></div>
+    <div class="stat-card"><div class="stat-val" style="color:var(--yellow)">${partial}</div><div class="stat-lbl">Partial Impact</div></div>
+    <div class="stat-card"><div class="stat-val" style="color:var(--blue)">${shifted}</div><div class="stat-lbl">Observed Shifts</div></div>`;
 }
 
-// ── Timeline rendering ─────────────────────────────────────────────────────
-function renderTimeline(events) {
+// ── Timeline ──────────────────────────────────────────────────────────────
+function renderTimeline(events, year) {
   const container = document.getElementById('results-container');
 
-  if (events.length === 0) {
+  if (!events.length) {
     container.innerHTML = `<div class="empty-state">
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-      <h3>No holidays found</h3><p>Try adjusting the year or jurisdiction filter.</p></div>`;
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
+      </svg>
+      <h3>No holidays found</h3>
+      <p>Try adjusting the year or jurisdiction filter.</p></div>`;
     return;
   }
 
   // Group by observed month
   const byMonth = new Map();
   for (const ev of events) {
-    const d = parseDate(ev.observed_date);
+    const d   = parseDate(ev.observed_date);
     const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
     if (!byMonth.has(key)) byMonth.set(key, []);
     byMonth.get(key).push(ev);
@@ -700,134 +684,119 @@ function renderTimeline(events) {
     const [y, m] = key.split('-');
     html += `<div class="month-group">
       <div class="month-label">${MONTH_FULL[parseInt(m)]} ${y}</div>`;
-    for (const ev of group) {
-      html += renderCard(ev);
-    }
+    for (const ev of group) html += renderCard(ev);
     html += `</div>`;
   }
-
   container.innerHTML = html;
 
-  // Attach toggle listeners
   container.querySelectorAll('.card-main').forEach(el => {
     el.addEventListener('click', () => {
-      const detail = el.nextElementSibling;
-      if (detail?.classList.contains('card-detail')) {
-        detail.classList.toggle('open');
-      }
+      el.nextElementSibling?.classList.toggle('open');
     });
   });
 }
 
 function renderCard(ev) {
-  const obsDate    = parseDate(ev.observed_date);
-  const actualDate = parseDate(ev.actual_date);
+  const obs    = parseDate(ev.observed_date);
+  const actual = parseDate(ev.actual_date);
+  const dayNum = obs.getDate();
+  const monShort = MONTH_FULL[obs.getMonth()+1].slice(0,3).toUpperCase();
+  const weekday  = WD_FULL[pyWeekday(obs)];
 
-  const dayNum   = obsDate.getDate();
-  const monthShort = MONTH_FULL[obsDate.getMonth()+1].slice(0,3).toUpperCase();
-  const weekday  = WD_FULL[obsDate.getDay()];
-
-  const classLabel = ev.classification?.replace(/_/g, ' ') || '';
-  const pillClass  = ev.classification === 'public_holiday'  ? 'pill-public'
+  const classLabel = (ev.classification || '').replace(/_/g, ' ');
+  const pillCls    = ev.classification === 'public_holiday'   ? 'pill-public'
                    : ev.classification === 'civic_observance' ? 'pill-civic'
                    : 'pill-default';
 
-  // Impact level
   const maxLevel = getMaxImpactLevel(ev.impacts);
-  const dotClass = { full: 'dot-full', partial: 'dot-partial', none: 'dot-none', conditional: 'dot-cond' }[maxLevel] || 'dot-none';
-  const dotTitle = maxLevel ? `Impact: ${maxLevel}` : 'No impact data';
+  const dotCls   = { full:'dot-full', partial:'dot-partial', none:'dot-none', conditional:'dot-cond' }[maxLevel] || 'dot-none';
 
-  const jurName  = ev.jurisdiction ? `${ev.jurisdiction.iso_3166_2 || ev.jurisdiction.iso_3166_1 || ev.jurisdiction.id}` : '';
+  const jurTag = ev.jurisdiction
+    ? `<span class="jur-badge">${escHtml(ev.jurisdiction.iso_3166_2 || ev.jurisdiction.iso_3166_1 || ev.jurisdiction.id)}</span>`
+    : '';
 
   let shiftTag = '';
   if (ev.is_shifted) {
-    const dir = ev.shift_direction === 'forward' ? '⟶' : '⟵';
-    const actualFmt = `${WD_FULL[actualDate.getDay()].slice(0,3)} ${MONTH_FULL[actualDate.getMonth()+1].slice(0,3)} ${actualDate.getDate()}`;
-    shiftTag = `<span class="observed-tag">Observed (actual: ${actualFmt}) ${dir}</span>`;
+    const dir     = ev.shift_direction === 'forward' ? '⟶' : '⟵';
+    const wd      = WD_FULL[pyWeekday(actual)].slice(0,3);
+    const mo      = MONTH_FULL[actual.getMonth()+1].slice(0,3);
+    shiftTag = `<span class="observed-tag">Observed (actual: ${wd} ${mo} ${actual.getDate()}) ${dir}</span>`;
   }
 
-  const detailHtml = renderDetail(ev);
+  const schCount = ev.impacts.reduce((n, i) => n + (i.schedule_entries || []).length, 0);
 
   return `
   <div class="holiday-card">
     <div class="card-main">
       <div class="date-badge">
         <div class="day">${dayNum}</div>
-        <div class="month">${monthShort}</div>
+        <div class="month">${monShort}</div>
       </div>
       <div class="card-info">
         <div class="card-title">
           ${escHtml(ev.name)}
-          <span class="pill ${pillClass}">${escHtml(classLabel)}</span>
-          ${jurName ? `<span class="jur-badge">${escHtml(jurName)}</span>` : ''}
+          ${classLabel ? `<span class="pill ${pillCls}">${escHtml(classLabel)}</span>` : ''}
+          ${jurTag}
         </div>
         <div class="card-meta">
-          <span>${weekday}, ${MONTH_FULL[obsDate.getMonth()+1]} ${dayNum}, ${obsDate.getFullYear()}</span>
+          <span>${weekday}, ${MONTH_FULL[obs.getMonth()+1]} ${dayNum}, ${obs.getFullYear()}</span>
           ${shiftTag}
-          ${ev.impacts.length > 0 ? `<span style="color:var(--muted)">${ev.impacts.reduce((n,i)=>(i.schedule_entries||[]).length+n,0)} schedule entries</span>` : ''}
+          ${schCount ? `<span style="color:var(--muted)">${schCount} schedule entries</span>` : ''}
         </div>
       </div>
-      <div class="impact-indicator" title="${dotTitle}">
-        <div class="dot ${dotClass}"></div>
+      <div class="impact-indicator" title="Impact: ${maxLevel || 'none'}">
+        <div class="dot ${dotCls}"></div>
         <span style="font-size:11px;color:var(--muted)">${maxLevel || 'none'}</span>
       </div>
     </div>
-    ${detailHtml}
+    ${renderDetail(ev)}
   </div>`;
 }
 
 function getMaxImpactLevel(impacts) {
-  const order = { full: 3, conditional: 2, partial: 1, none: 0 };
-  let best = null;
-  let bestN = -1;
+  const order = { full:3, conditional:2, partial:1, none:0 };
+  let best = null, bestN = -1;
   for (const imp of impacts) {
     const lvl = imp.operational_impact?.impact_level;
-    if (lvl && (order[lvl] ?? -1) > bestN) {
-      bestN = order[lvl];
-      best  = lvl;
-    }
+    if (lvl && (order[lvl] ?? -1) > bestN) { bestN = order[lvl]; best = lvl; }
   }
   return best;
 }
 
 function renderDetail(ev) {
-  let sections = '';
+  let html = '';
 
   for (const imp of ev.impacts) {
-    // Operational impact summary
     if (imp.operational_impact) {
       const oi  = imp.operational_impact;
-      const cls = { full: 'level-full', partial: 'level-partial', none: 'level-none', conditional: 'level-cond' }[oi.impact_level] || 'level-none';
-      sections += `
-      <div class="detail-section">
+      const cls = { full:'level-full', partial:'level-partial', none:'level-none', conditional:'level-cond' }[oi.impact_level] || 'level-none';
+      html += `<div class="detail-section">
         <div class="detail-heading">Operational Impact</div>
         <div class="op-impact-row">
-          <span class="op-level ${cls}">${oi.impact_level?.toUpperCase()}</span>
-          <span style="font-size:12px;color:var(--muted)">${escHtml(oi.affected_operations?.join(', ') || '')}</span>
+          <span class="op-level ${cls}">${escHtml((oi.impact_level||'').toUpperCase())}</span>
+          <span style="font-size:12px;color:var(--muted)">${escHtml((oi.affected_operations||[]).join(', '))}</span>
         </div>
         ${oi.notes ? `<div style="font-size:12px;color:var(--muted);margin-top:4px;font-style:italic">${escHtml(oi.notes)}</div>` : ''}
       </div>`;
     }
 
-    // Schedule entries table
     if (imp.schedule_entries?.length) {
       const rows = imp.schedule_entries.map(se => {
-        const effCls = se.effect?.status === 'closed' ? 'eff-closed'
+        const effCls = se.effect?.status === 'closed'  ? 'eff-closed'
                      : se.effect?.status === 'partial' ? 'eff-partial'
                      : 'eff-open';
-        const offsetTag = se.offset_days !== 0
-          ? `<span style="font-size:10px;color:var(--muted)">(${se.offset_days > 0 ? '+' : ''}${se.offset_days}d from ${se.date_ref})</span>`
+        const offTag = se.offset_days !== 0
+          ? `<span style="font-size:10px;color:var(--muted)">(${se.offset_days>0?'+':''}${se.offset_days}d from ${se.date_ref})</span>`
           : '';
         return `<tr>
-          <td>${escHtml(se.operation?.replace(/_/g, ' '))}</td>
-          <td>${escHtml(se.date)} ${offsetTag}</td>
-          <td class="${effCls}">${se.effect?.status ?? '—'} / ${se.effect?.severity ?? '—'}</td>
-          <td style="color:var(--muted)">${escHtml(se.reason || '')}</td>
+          <td>${escHtml((se.operation||'').replace(/_/g,' '))}</td>
+          <td>${escHtml(se.date)} ${offTag}</td>
+          <td class="${effCls}">${escHtml(se.effect?.status||'—')} / ${escHtml(se.effect?.severity||'—')}</td>
+          <td style="color:var(--muted)">${escHtml(se.reason||'')}</td>
         </tr>`;
       }).join('');
 
-      sections += `
-      <div class="detail-section">
+      html += `<div class="detail-section">
         <div class="detail-heading">Impact Schedule</div>
         <table class="schedule-table">
           <thead><tr><th>Operation</th><th>Date</th><th>Status / Severity</th><th>Reason</th></tr></thead>
@@ -836,97 +805,93 @@ function renderDetail(ev) {
       </div>`;
     }
 
-    // Network impacts
-    if (imp.network_impacts) {
-      const ni  = imp.network_impacts;
-      const rules = (ni.rules || []).map(r =>
-        `<div style="font-size:12px;padding:3px 0">
-          <span style="color:var(--muted)">${escHtml(r.condition)}</span>
-          → <strong>${escHtml(r.action)}</strong>
-          <span class="${r.severity === 'critical' ? 'op-level level-full' : r.severity === 'major' ? 'op-level level-partial' : 'op-level level-none'}" style="margin-left:6px;font-size:10px">${escHtml(r.severity?.toUpperCase())}</span>
-        </div>`).join('');
-      if (rules) {
-        sections += `
-        <div class="detail-section">
-          <div class="detail-heading">Network Impacts</div>
-          ${rules}
+    if (imp.network_impacts?.rules?.length) {
+      const rules = imp.network_impacts.rules.map(r => {
+        const sevCls = r.severity==='critical'?'level-full': r.severity==='major'?'level-partial':'level-none';
+        return `<div style="font-size:12px;padding:3px 0">
+          <span style="color:var(--muted)">${escHtml(r.condition)}</span> →
+          <strong>${escHtml(r.action)}</strong>
+          <span class="op-level ${sevCls}" style="font-size:10px;margin-left:6px">${escHtml((r.severity||'').toUpperCase())}</span>
         </div>`;
-      }
+      }).join('');
+      html += `<div class="detail-section"><div class="detail-heading">Network Impacts</div>${rules}</div>`;
     }
   }
 
-  if (!sections) {
-    sections = `<div style="font-size:12px;color:var(--muted);font-style:italic">No impact data configured for this event.</div>`;
+  if (!html) {
+    html = `<div style="font-size:12px;color:var(--muted);font-style:italic">No impact data configured for this event.</div>`;
   }
 
-  // Time definition
-  const td = ev.time_definition;
-  if (td?.recurrence?.rrule) {
-    sections += `
-    <div class="detail-section">
+  // Recurrence hint
+  const rrule = ev.time_definition?.recurrence?.rrule;
+  if (rrule) {
+    html += `<div class="detail-section">
       <div class="detail-heading">Recurrence</div>
-      <code style="font-family:var(--mono);font-size:11px;color:var(--accent-h)">${escHtml(td.recurrence.rrule)}</code>
-      ${td.recurrence.timezone ? `<span style="font-size:11px;color:var(--muted);margin-left:8px">${escHtml(td.recurrence.timezone)}</span>` : ''}
+      <code style="font-family:var(--mono);font-size:11px;color:var(--accent-h)">${escHtml(rrule)}</code>
+      ${ev.time_definition.recurrence.timezone ? `<span style="font-size:11px;color:var(--muted);margin-left:8px">${escHtml(ev.time_definition.recurrence.timezone)}</span>` : ''}
     </div>`;
   }
 
-  return `<div class="card-detail">${sections}</div>`;
+  return `<div class="card-detail">${html}</div>`;
 }
 
-// ── Raw JSON ───────────────────────────────────────────────────────────────
+// ── Raw JSON ──────────────────────────────────────────────────────────────
 function renderRaw(events) {
-  document.getElementById('raw-output').textContent =
-    JSON.stringify(events, null, 2);
+  document.getElementById('raw-output').textContent = JSON.stringify(events, null, 2);
 }
 
-// ── Date checker ───────────────────────────────────────────────────────────
-function doCheckDate() {
-  if (!resolver) { alert('No config loaded.'); return; }
+// ── Date checker (calls Python API) ──────────────────────────────────────
+async function doCheckDate() {
   const dateStr = document.getElementById('check-date-input').value.trim();
   if (!dateStr) return;
   const jurId = document.getElementById('check-jur-select').value || null;
+  const el    = document.getElementById('check-result');
 
   try {
-    const result  = resolver.checkDate(dateStr, jurId);
-    const el      = document.getElementById('check-result');
+    const result = await apiPost('/api/check-date', {
+      config: currentConfig,
+      date: dateStr,
+      jurisdiction_id: jurId,
+    });
+
     const longFmt = formatDateLong(dateStr);
 
     if (!result.is_holiday) {
       el.innerHTML = `<div class="date-check-result dcr-miss">
-        <strong>${escHtml(longFmt)}</strong> is not a holiday ${jurId ? 'in the selected jurisdiction.' : '(in any loaded jurisdiction).'}
+        <strong>${escHtml(longFmt)}</strong> is not a holiday in the selected scope.
       </div>`;
       return;
     }
 
-    const eventCards = result.events.map(ev => {
-      const shift = ev.is_shifted
-        ? ` (actual: ${ev.actual_date}${ev.shift_direction === 'forward' ? ' → moved forward' : ' → moved back'})`
-        : '';
+    const cards = result.events.map(ev => {
       const maxLvl = getMaxImpactLevel(ev.impacts);
-      const dotCls = { full: 'dot-full', partial: 'dot-partial', none: 'dot-none', conditional: 'dot-cond' }[maxLvl] || 'dot-none';
+      const dotCls = { full:'dot-full', partial:'dot-partial', none:'dot-none', conditional:'dot-cond' }[maxLvl] || 'dot-none';
+      const shift  = ev.is_shifted ? ` (actual: ${ev.actual_date}, shifted ${ev.shift_direction})` : '';
+      const jur    = ev.jurisdiction;
+      const jurTag = jur ? `<span class="jur-badge">${escHtml(jur.iso_3166_2||jur.iso_3166_1||jur.id)}</span>` : '';
       return `<div style="padding:6px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px">
         <div class="dot ${dotCls}"></div>
         <div>
-          <strong>${escHtml(ev.name)}</strong>
-          ${ev.jurisdiction ? `<span class="jur-badge">${escHtml(ev.jurisdiction.iso_3166_2||ev.jurisdiction.iso_3166_1||ev.jurisdiction.id)}</span>` : ''}
-          <div style="font-size:11px;color:var(--muted)">${result.is_actual ? 'Actual date' : ''}${result.is_actual && result.is_observed ? ' + ' : ''}${result.is_observed ? 'Observed date' : ''}${escHtml(shift)}</div>
+          <strong>${escHtml(ev.name)}</strong> ${jurTag}
+          <div style="font-size:11px;color:var(--muted)">
+            ${result.is_actual?'Actual date':''}${result.is_actual&&result.is_observed?' + ':''}${result.is_observed?'Observed date':''}${escHtml(shift)}
+          </div>
         </div>
       </div>`;
     }).join('');
 
     el.innerHTML = `<div class="date-check-result dcr-hit">
-      <strong>${escHtml(longFmt)}</strong> is a holiday:<br/><br/>${eventCards}
+      <strong>${escHtml(longFmt)}</strong> is a holiday:<br/><br/>${cards}
     </div>`;
   } catch (e) {
-    document.getElementById('check-result').innerHTML =
-      `<div class="error-banner">${escHtml(e.message)}</div>`;
+    el.innerHTML = `<div class="error-banner">${escHtml(e.message)}</div>`;
   }
 }
 
-// ── Error display ──────────────────────────────────────────────────────────
+// ── Error ─────────────────────────────────────────────────────────────────
 function showError(msg) {
   let el = document.getElementById('error-banner');
-  if (!msg) { if (el) el.remove(); return; }
+  if (!msg) { el?.remove(); return; }
   if (!el) {
     el = document.createElement('div');
     el.id = 'error-banner';
@@ -936,52 +901,36 @@ function showError(msg) {
   el.textContent = msg;
 }
 
-// ── Helpers ────────────────────────────────────────────────────────────────
-function escHtml(str) {
-  if (str == null) return '';
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-}
-
-// ── Event bindings ─────────────────────────────────────────────────────────
+// ── Event bindings ────────────────────────────────────────────────────────
 document.getElementById('resolve-btn').addEventListener('click', doResolve);
-
-document.getElementById('year-input').addEventListener('keydown', e => {
-  if (e.key === 'Enter') doResolve();
-});
+document.getElementById('year-input').addEventListener('keydown', e => { if (e.key==='Enter') doResolve(); });
 
 document.getElementById('apply-config-btn').addEventListener('click', () => {
   try {
-    const cfg = JSON.parse(document.getElementById('config-editor').value);
-    applyConfig(cfg);
+    currentConfig = JSON.parse(document.getElementById('config-editor').value);
+    populateJurisdictionSelects(currentConfig.jurisdictions || []);
     showError(null);
     doResolve();
-  } catch (e) {
-    showError(`JSON parse error: ${e.message}`);
-  }
+  } catch (e) { showError(`JSON parse error: ${e.message}`); }
 });
 
 document.getElementById('reset-config-btn').addEventListener('click', async () => {
-  const sample = await loadSampleConfig();
-  if (sample) {
-    document.getElementById('config-editor').value = JSON.stringify(sample, null, 2);
-    applyConfig(sample);
+  try {
+    const res = await fetch('/sample-config.json');
+    currentConfig = await res.json();
+    document.getElementById('config-editor').value = JSON.stringify(currentConfig, null, 2);
+    populateJurisdictionSelects(currentConfig.jurisdictions || []);
+    showError(null);
     doResolve();
-  }
+  } catch (e) { showError(e.message); }
 });
 
 document.getElementById('download-config-btn').addEventListener('click', () => {
-  const content = document.getElementById('config-editor').value;
-  const blob    = new Blob([content], { type: 'application/json' });
-  const url     = URL.createObjectURL(blob);
-  const a       = document.createElement('a');
-  a.href        = url;
-  a.download    = 'holiday-config.json';
-  a.click();
-  URL.revokeObjectURL(url);
+  const blob = new Blob([document.getElementById('config-editor').value], { type: 'application/json' });
+  const a = Object.assign(document.createElement('a'), {
+    href: URL.createObjectURL(blob), download: 'holiday-config.json',
+  });
+  a.click(); URL.revokeObjectURL(a.href);
 });
 
 document.getElementById('toggle-sidebar').addEventListener('click', () => {
@@ -990,13 +939,15 @@ document.getElementById('toggle-sidebar').addEventListener('click', () => {
 });
 
 document.getElementById('check-date-btn').addEventListener('click', doCheckDate);
-document.getElementById('check-date-input').addEventListener('keydown', e => {
-  if (e.key === 'Enter') doCheckDate();
-});
+document.getElementById('check-date-input').addEventListener('keydown', e => { if (e.key==='Enter') doCheckDate(); });
 
-// Auto-fill today's date in checker
-document.getElementById('check-date-input').value =
-  toDateStr(new Date());
+// Set today's date as default in checker
+{
+  const now = new Date();
+  const pad = n => String(n).padStart(2,'0');
+  document.getElementById('check-date-input').value =
+    `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}`;
+}
 
 // Tabs
 document.querySelectorAll('.tab').forEach(tab => {
@@ -1008,8 +959,8 @@ document.querySelectorAll('.tab').forEach(tab => {
   });
 });
 
-// ── Boot ───────────────────────────────────────────────────────────────────
-init().then(() => doResolve());
+// ── Boot ──────────────────────────────────────────────────────────────────
+init();
 </script>
 </body>
 </html>
